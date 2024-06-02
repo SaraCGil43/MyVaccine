@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "4McZ+8q8SfTVvtSIU+kvFyJ/v56/SjB3q0RFfSs7CbU=",
+  "Source": "MyVaccineWebApi",
+  "BasePath": "_content/MyVaccineWebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
