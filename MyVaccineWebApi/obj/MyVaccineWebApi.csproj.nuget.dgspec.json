@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccineWebApi\\MyVaccineWebApi.csproj": {}
+    "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccine\\MyVaccineWebApi\\MyVaccineWebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccineWebApi\\MyVaccineWebApi.csproj": {
+    "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccine\\MyVaccineWebApi\\MyVaccineWebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccineWebApi\\MyVaccineWebApi.csproj",
+        "projectUniqueName": "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccine\\MyVaccineWebApi\\MyVaccineWebApi.csproj",
         "projectName": "MyVaccineWebApi",
-        "projectPath": "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccineWebApi\\MyVaccineWebApi.csproj",
+        "projectPath": "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccine\\MyVaccineWebApi\\MyVaccineWebApi.csproj",
         "packagesPath": "C:\\Users\\sarac\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccineWebApi\\obj\\",
+        "outputPath": "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccine\\MyVaccineWebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\sarac\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,11 +40,25 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.19, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.19, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.5, )"
             },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.19, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.19, )"
             },
