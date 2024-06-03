@@ -1,11 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 namespace MyVaccineWebApi.Models
 {
-    public class MyVaccineAppDBContext: DbContext
+    public class MyVaccineAppDBContext : IdentityDbContext<IdentityUser>
     {
         public MyVaccineAppDBContext(DbContextOptions<MyVaccineAppDBContext> options) : base(options)
         {
-            
+
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Dependent> Dependents { get; set; }
@@ -17,6 +19,20 @@ namespace MyVaccineWebApi.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
+            //modelBuilder.Entity<IdentityUser>()
+            //   .HasKey(u => u.Id);
+
+            //modelBuilder.Entity<IdentityRole>()
+            //    .HasKey(r => r.Id);
+
+            //modelBuilder.Entity<IdentityUserRole<string>>()
+            //    .HasKey(r => new { r.UserId, r.RoleId });
+
+            //modelBuilder.Entity<IdentityUserLogin<string>>()
+            //    .HasKey(l => new { l.LoginProvider, l.ProviderKey });
+
             modelBuilder.Entity<User>(entity =>
             {
                 entity.Property(u => u.UserName)
