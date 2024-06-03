@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyVaccineWebApi.Models;
 
@@ -11,9 +12,11 @@ using MyVaccineWebApi.Models;
 namespace MyVaccineWebApi.Migrations
 {
     [DbContext(typeof(MyVaccineAppDBContext))]
-    partial class MyVaccineAppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240603212301_UpdatedModelsTypeData")]
+    partial class UpdatedModelsTypeData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

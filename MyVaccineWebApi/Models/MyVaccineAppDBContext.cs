@@ -33,17 +33,18 @@ namespace MyVaccineWebApi.Models
             //modelBuilder.Entity<IdentityUserLogin<string>>()
             //    .HasKey(l => new { l.LoginProvider, l.ProviderKey });
 
+            modelBuilder.Entity<User>()
+            .HasOne(u => u.AspNetUser)
+            .WithMany()
+            .HasForeignKey(u => u.AspNetUserId);
+
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(u => u.UserName)
+                entity.Property(u => u.FirstName)
                     .IsRequired()
                     .HasMaxLength(255);
 
-                entity.Property(u => u.Email)
-                    .IsRequired()
-                    .HasMaxLength(255);
-
-                entity.Property(u => u.Password)
+                entity.Property(u => u.LastName)
                     .IsRequired()
                     .HasMaxLength(255);
             });

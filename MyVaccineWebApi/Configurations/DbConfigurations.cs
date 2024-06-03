@@ -1,6 +1,5 @@
-﻿using MyVaccineWebApi.Literals;
+﻿using Microsoft.EntityFrameworkCore;
 using MyVaccineWebApi.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace MyVaccineWebApi.Configurations
 {
@@ -17,6 +16,6 @@ namespace MyVaccineWebApi.Configurations
                         );
             return services;
         }
-            
+
     }
 }

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyVaccineWebApi.Models;
 
@@ -11,9 +12,11 @@ using MyVaccineWebApi.Models;
 namespace MyVaccineWebApi.Migrations
 {
     [DbContext(typeof(MyVaccineAppDBContext))]
-    partial class MyVaccineAppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240603203816_RelatedModels")]
+    partial class RelatedModels
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -322,15 +325,13 @@ namespace MyVaccineWebApi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("FirstName")
-                        .IsRequired()
+                    b.Property<int>("FirstName")
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("int");
 
-                    b.Property<string>("LastName")
-                        .IsRequired()
+                    b.Property<int>("LastName")
                         .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasColumnType("int");
 
                     b.HasKey("UserId");
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using MyVaccineWebApi.Dtos;
 using MyVaccineWebApi.Literals;
+using MyVaccineWebApi.Repositories.Contracts;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -14,24 +15,25 @@ namespace MyVaccineWebApi.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
+        //Depency Injections
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly IUserRepository _userRepository;
 
         //Constructor con inyección de dependencias 
-        public AuthController(UserManager<IdentityUser> userManager)
+        public AuthController(UserManager<IdentityUser> userManager, IUserRepository IUserRepository)
         {
             _userManager = userManager;
+            _userRepository = IUserRepository;
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto model)
         {
-            var user = new IdentityUser
+            if (!ModelState.IsValid)
             {
-                UserName = model.Username,
-                Email = model.Email
-            };
+                return BadRequest(ModelState);
+            }
 
-            var result = await _userManager.CreateAsync(user, model.Password);
-
+            var result = await _userRepository.AddUser(model);
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
@@ -39,6 +41,7 @@ namespace MyVaccineWebApi.Controllers
 
             return Ok("User registered successfully");
         }
+
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {
@@ -48,7 +51,6 @@ namespace MyVaccineWebApi.Controllers
             {
                 var claims = new[]
                 {
-                    //Los claims son de atributos que van en el token, cuando los lean vayan allí los atributos.
                     new Claim(ClaimTypes.Name, user.UserName)
             };
 
