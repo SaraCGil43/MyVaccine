@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.IdentityModel.Tokens;
 using MyVaccineWebApi.Dtos;
 using MyVaccineWebApi.Literals;
 using MyVaccineWebApi.Repositories.Contracts;
+using MyVaccineWebApi.Services.Contracts;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -16,63 +19,58 @@ namespace MyVaccineWebApi.Controllers
     public class AuthController : ControllerBase
     {
         //Depency Injections
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
         //Constructor con inyección de dependencias 
-        public AuthController(UserManager<IdentityUser> userManager, IUserRepository IUserRepository)
+        public AuthController(IUserService userService)
         {
-            _userManager = userManager;
-            _userRepository = IUserRepository;
+            _userService = userService;
         }
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto model)
         {
-            if (!ModelState.IsValid)
+            var response = await _userService.AddUserAsync(model); 
+            if(response != null && response.IsSuccess)
             {
-                return BadRequest(ModelState);
-            }
-
-            var result = await _userRepository.AddUser(model);
-            if (!result.Succeeded)
-            {
-                return BadRequest(result.Errors);
-            }
-
             return Ok("User registered successfully");
+            }
+            else
+            {
+                return BadRequest(response);
+            }       
+            
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {
-            var user = await _userManager.FindByNameAsync(model.Username);
-
-            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            var response = await _userService.Login(model);
+            if (response != null && response.IsSuccess)
             {
-                var claims = new[]
-                {
-                    new Claim(ClaimTypes.Name, user.UserName)
-            };
+                return Ok(response);
+            }
+            else
+            {
+                return Unauthorized(response);
+            }
+        }
+        [Authorize] //Metodo que es protegido, sin estar autenticado el usuario no ingresa.
+        [HttpPost("refresh-token")]
+        public async Task<IActionResult> RefreshToken()
+        {
+            //Acciones recomendadas en los controladores, responsabilidad unica.
 
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Environment.GetEnvironmentVariable(MyVaccineLiterals.JWT_TOKEN)));
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                var token = new JwtSecurityToken(
-                    //issuer: _configuration["JwtIssuer"],
-                    //audience: _configuration["JwtAudience"],
-                    claims: claims,
-                    expires: DateTime.Now.AddMinutes(15),
-                    signingCredentials: creds
-                );
-
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
-                });
+            var claimsIdentity = HttpContext.User.Identity as ClaimsIdentity;
+            var response = await _userService.RefreshToken(claimsIdentity.Name);
+            if (response.IsSuccess)
+            {
+                return Ok(response);
+            }
+            else
+            {
+                return Unauthorized(response);
             }
 
-            return Unauthorized();
         }
     }
 }
