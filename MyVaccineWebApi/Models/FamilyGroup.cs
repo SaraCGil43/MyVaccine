@@ -1,6 +1,6 @@
 ﻿namespace MyVaccineWebApi.Models
 {
-    public class FamilyGroup
+    public class FamilyGroup : BaseTable
     {
         public int FamilyGroupId { get; set; }
         public string Name { get; set; }

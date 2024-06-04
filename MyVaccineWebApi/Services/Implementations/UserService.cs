@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Azure.Core;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.ResponseCompression;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using MyVaccineWebApi.Dtos;
 using MyVaccineWebApi.Literals;
+using MyVaccineWebApi.Models;
 using MyVaccineWebApi.Repositories.Contracts;
 using MyVaccineWebApi.Services.Contracts;
 using System.IdentityModel.Tokens.Jwt;
@@ -126,6 +129,15 @@ namespace MyVaccineWebApi.Services.Implementations
                 response.Errors = new string[] { ex.Message };
             }
 
+            return response;
+
+        }
+
+        public async Task<User> GetUserInfo(string email)
+        {
+            var user = await _userManager.FindByNameAsync(email);
+
+            var response = await _userRepository.FindByAsNoTracking(x => x.AspNetUserId == user.Id).FirstOrDefaultAsync();
             return response;
 
         }

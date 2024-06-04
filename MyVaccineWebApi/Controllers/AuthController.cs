@@ -72,5 +72,19 @@ namespace MyVaccineWebApi.Controllers
             }
 
         }
+
+        [Authorize] //Metodo que es protegido, sin estar autenticado el usuario no ingresa.
+        [HttpGet("getUserInfo")]
+        public async Task<IActionResult> GetUserInfo()
+        {
+            //Acciones recomendadas en los controladores, responsabilidad unica.
+
+            var claimsIdentity = HttpContext.User.Identity as ClaimsIdentity;
+            var response = await _userService.GetUserInfo(claimsIdentity.Name);
+
+                return Ok(response);
+          
+
+        }
     }
 }

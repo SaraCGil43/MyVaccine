@@ -1,6 +1,6 @@
 ﻿namespace MyVaccineWebApi.Models
 {
-    public class VaccineRecord
+    public class VaccineRecord : BaseTable
     {
         public int VaccineRecordId { get; set; }
         public int UserId { get; set; }

@@ -6,12 +6,12 @@ using System.Transactions;
 
 namespace MyVaccineWebApi.Repositories.Implementations
 {
-    public class UserRepository : IUserRepository
+    public class UserRepository : BaseRepository<User>, IUserRepository
     {
         private readonly MyVaccineAppDBContext _context;
         public readonly UserManager<IdentityUser> _userManager;
 
-        public UserRepository(MyVaccineAppDBContext context, UserManager<IdentityUser> userManager)
+        public UserRepository(MyVaccineAppDBContext context, UserManager<IdentityUser> userManager): base(context)
         {
             _context = context;
             _userManager = userManager;
