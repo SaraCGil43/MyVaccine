@@ -1,11 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "9lSLhKj8c36vp+5pY4uh0r+49dhTJlbnvCfbGT5c0SJbIFcrgz7UpDRfT20na+AwcP1KG8vx2l6xv+nrYiTjQQ==",
+  "dgSpecHash": "1PfGzofhlKNwKfU2TqxIhyLtjhypmNR1oHVJY+6ndwHINGkvZVeCHb9/HNxkCGcq+SOzYeIsE0wkxGGvjU/xAw==",
   "success": true,
   "projectFilePath": "C:\\Users\\sarac\\Documents\\UNIVERSIDAD\\ARQ DISPOSITIVOS MOVILES\\Desarollo Web APIS\\VaccineWebApi\\MyVaccine\\MyVaccineWebApi\\MyVaccineWebApi.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\sarac\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\sarac\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\sarac\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\sarac\\.nuget\\packages\\fluentvalidation\\11.9.1\\fluentvalidation.11.9.1.nupkg.sha512",
+    "C:\\Users\\sarac\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.3.0\\fluentvalidation.aspnetcore.11.3.0.nupkg.sha512",
+    "C:\\Users\\sarac\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.9.1\\fluentvalidation.dependencyinjectionextensions.11.9.1.nupkg.sha512",
     "C:\\Users\\sarac\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\sarac\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\7.0.19\\microsoft.aspnetcore.authentication.jwtbearer.7.0.19.nupkg.sha512",
     "C:\\Users\\sarac\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\7.0.19\\microsoft.aspnetcore.cryptography.internal.7.0.19.nupkg.sha512",
