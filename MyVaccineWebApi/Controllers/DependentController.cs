@@ -9,7 +9,7 @@ namespace MyVaccineWebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class DependentsController : ControllerBase
     {
         private readonly IDependentService _dependentService;
